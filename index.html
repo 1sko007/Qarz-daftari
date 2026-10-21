@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Qarz Daftari</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f4f8;color:#18202b;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:850px;margin:auto;padding:14px 13px 90px}header{padding:8px 3px 15px}h1{font-size:29px;margin:0;font-weight:850}.sub{color:#6d7681;margin-top:4px;font-size:14px}
+.page{display:none}.page.active{display:block}.hero{background:linear-gradient(145deg,#111827,#293548);color:#fff;border-radius:24px;padding:20px;margin-bottom:13px;box-shadow:0 8px 25px #0002}
+.hero .small{opacity:.75;font-size:13px}.hero .big{font-size:34px;font-weight:900;margin:4px 0 15px}.herorow{display:grid;grid-template-columns:1fr 1fr;gap:9px}.heroitem{background:#ffffff14;border:1px solid #ffffff18;border-radius:15px;padding:11px}.heroitem span{display:block;font-size:12px;opacity:.72}.heroitem b{font-size:17px}
+.card{background:#fff;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 4px 18px #0000000a}h2{font-size:21px;margin:2px 0 13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{font-size:12px;color:#6d7681;font-weight:750}input{width:100%;padding:14px;margin-top:5px;border:1px solid #d9dee5;border-radius:13px;font-size:16px;background:#fff;outline:none}
+button{border:0;border-radius:13px;padding:12px 14px;font-weight:750;font-size:15px;cursor:pointer}.primary{width:100%;background:#111827;color:#fff;margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#f6f7f9;padding:12px;border-radius:15px;color:#69737d;font-size:12px}.stat b{display:block;color:#18202b;font-size:17px;margin-top:4px}
+.tabs{display:flex;gap:7px;overflow:auto;padding-bottom:2px}.tabs button{white-space:nowrap;background:#e9edf2}.tabs .on{background:#111827;color:#fff}
+.item{border:1px solid #e0e5ea;border-radius:17px;padding:14px;margin:9px 0}.top{display:flex;justify-content:space-between;gap:10px}.name{font-weight:850;font-size:18px}.money{font-weight:850}.muted{color:#6d7681;font-size:13px;margin-top:4px}.badge{display:inline-block;margin-top:7px;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:750}.red{background:#ffe1e1;color:#b42318}.green{background:#dcfce7;color:#18733c}.yellow{background:#fff0d2;color:#966000}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.actions button{padding:8px 11px;font-size:13px}.pay{background:#16803c;color:#fff}.del{background:#e5484d;color:#fff}
+.history{background:#f7f8fa;border-radius:11px;padding:9px;margin-top:8px;font-size:13px}.empty{text-align:center;color:#7b858f;padding:25px}
+.shoprow{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #edf0f3;padding:13px 0}.shoprow:last-child{border:0}.shopname{font-weight:800}
+.nav{position:fixed;z-index:5;bottom:10px;left:50%;transform:translateX(-50%);width:min(820px,calc(100% - 22px));background:#fff;border:1px solid #e2e6eb;border-radius:20px;padding:7px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;box-shadow:0 8px 30px #0002}
+.nav button{background:transparent;color:#69737d;font-size:12px;padding:9px 4px}.nav button.on{background:#111827;color:#fff}.notice{font-size:12px;color:#69737d;margin-top:8px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero .big{font-size:31px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>📒 Қарз дафтари</h1><div class="sub">Онлайн — маълумотлар базага сақланади</div></header>
+
+<section id="home" class="page active">
+<div class="hero"><div class="small">ЖАМИ ҚОЛГАН ҚАРЗ</div><div class="big" id="heroLeft">0 сўм</div>
+<div class="herorow"><div class="heroitem"><span>Қайтарилган</span><b id="heroPaid">0 сўм</b></div><div class="heroitem"><span>Муддати ўтган</span><b id="heroOver">0 сўм</b></div></div></div>
+<div class="card"><h2>📊 Бугунги ҳолат</h2><div class="stats"><div class="stat">Жами қарз<b id="total">0 сўм</b></div><div class="stat">Қайтарилган<b id="returned">0 сўм</b></div><div class="stat">Қолган<b id="left">0 сўм</b></div></div></div>
+<div class="card"><h2>⚠️ Эътибор бериш керак</h2><div id="attention" class="empty">Ҳозирча муддати ўтган қарз йўқ</div></div>
+<div class="card"><h2>🏪 Энг катта қарздорлар</h2><div id="topShops" class="empty">Ҳозирча маълумот йўқ</div></div>
+</section>
+
+<section id="add" class="page">
+<div class="card"><h2>➕ Янги қарз</h2><div class="grid">
+<div><label>Магазин / мижоз</label><input id="shop" placeholder="Baraka Market"></div>
+<div><label>Телефон</label><input id="phone" inputmode="tel" placeholder="+998 90..."></div>
+<div><label>Маҳсулот</label><input id="product" placeholder="Мармелад"></div>
+<div><label>Миқдор</label><input id="qty" type="number" min="1" value="1"></div>
+<div><label>1 дона нархи</label><input id="price" type="number" inputmode="numeric" placeholder="12000"></div>
+<div><label>Берилган сана</label><input id="date" type="date"></div>
+<div><label>Тўлаш муддати</label><input id="due" type="date"></div>
+</div><button class="primary" id="addBtn">+ Қарзни сақлаш</button><div class="notice">Сақлаш учун интернет уланган бўлиши керак.</div></div>
+</section>
+
+<section id="debts" class="page">
+<div class="card"><h2>📋 Қарзлар</h2><input id="search" placeholder="🔎 Магазин ёки маҳсулотни қидириш...">
+<div class="tabs" style="margin-top:10px"><button class="on" data-f="all">Барчаси</button><button data-f="open">Қарзлар</button><button data-f="overdue">Муддати ўтган</button><button data-f="paid">Тўланган</button></div><div id="list"></div></div>
+</section>
+
+<section id="shops" class="page">
+<div class="card"><h2>🏪 Магазинлар</h2><input id="shopSearch" placeholder="🔎 Магазинни қидириш..."><div id="shopsList"></div></div>
+</section>
+</div>
+
+<nav class="nav"><button class="on" data-page="home">🏠<br>Бош саҳифа</button><button data-page="add">➕<br>Янги қарз</button><button data-page="debts">📋<br>Қарзлар</button><button data-page="shops">🏪<br>Магазинлар</button></nav>
+
+<script>
+let data=[],filter='all';
+const $=id=>document.getElementById(id),today=()=>new Date().toISOString().slice(0,10),money=n=>Number(n||0).toLocaleString('uz-UZ')+' сўм';
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+$('date').value=today();
+
+async function api(path='',opts={}){
+ const r=await fetch('/api/debts'+path,{headers:{'Content-Type':'application/json'},...opts});
+ if(!r.ok) throw new Error(await r.text());
+ return r.json();
+}
+async function load(){try{data=await api();render()}catch(e){console.error(e);document.querySelector('.sub').textContent='⚠️ API/база уланмаган — Vercel ENV созламаларини текширинг';}}
+function show(page){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(page).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('on',x.dataset.page===page));render()}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>show(b.dataset.page));
+
+$('addBtn').onclick=async()=>{
+let body={shop:$('shop').value.trim(),phone:$('phone').value.trim(),product:$('product').value.trim(),qty:Number($('qty').value),price:Number($('price').value),date:$('date').value,due:$('due').value};
+if(!body.shop||!body.product||!body.qty||!body.price||!body.date){alert('Магазин, маҳсулот, миқдор, нарх ва санани киритинг.');return}
+try{await api('',{method:'POST',body:JSON.stringify(body)});['shop','phone','product','price','due'].forEach(x=>$(x).value='');$('qty').value=1;$('date').value=today();await load();alert('✅ Қарз онлайн базага сақланди!');show('debts')}catch(e){alert('Сақлашда хато: '+e.message)}
+};
+document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('[data-f]').forEach(x=>x.classList.remove('on'));b.classList.add('on');render()});
+$('search').oninput=render;$('shopSearch').oninput=render;
+
+$('list').onclick=async e=>{
+let id=e.target.dataset.id;if(!id)return;
+if(e.target.dataset.a==='pay'){let v=Number(prompt('Қанча сўм берди?',String(Math.max(0,Number(e.target.dataset.rem)))));if(!v||v<0)return;try{await api('/'+id,{method:'PATCH',body:JSON.stringify({payment:v,date:today()})});await load()}catch(x){alert('Тўловни сақлашда хато: '+x.message)}}
+if(e.target.dataset.a==='delete'&&confirm('Бу қарзни ўчиришни хоҳлайсизми?')){try{await api('/'+id,{method:'DELETE'});await load()}catch(x){alert('Ўчиришда хато: '+x.message)}}
+};
+
+function render(){
+let total=data.reduce((s,d)=>s+Number(d.total),0),ret=data.reduce((s,d)=>s+Number(d.paid),0),left=total-ret,over=data.filter(d=>d.paid<d.total&&d.due&&d.due<today()).reduce((s,d)=>s+(d.total-d.paid),0);
+$('total').textContent=money(total);$('returned').textContent=money(ret);$('left').textContent=money(left);$('heroLeft').textContent=money(left);$('heroPaid').textContent=money(ret);$('heroOver').textContent=money(over);
+let overdue=data.filter(d=>d.paid<d.total&&d.due&&d.due<today()).sort((a,b)=>(b.total-b.paid)-(a.total-a.paid));
+$('attention').innerHTML=overdue.length?overdue.slice(0,4).map(d=>`<div class="shoprow"><div><b>${esc(d.shop)}</b><div class="muted">${esc(d.product)} · ${d.due}</div></div><b>${money(d.total-d.paid)}</b></div>`).join(''):'Ҳозирча муддати ўтган қарз йўқ';
+let shops={};data.forEach(d=>{shops[d.shop]=(shops[d.shop]||0)+(d.total-d.paid)});let top=Object.entries(shops).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,5);
+$('topShops').innerHTML=top.length?top.map(x=>`<div class="shoprow"><span class="shopname">${esc(x[0])}</span><b>${money(x[1])}</b></div>`).join(''):'Ҳозирча маълумот йўқ';
+let q=$('search').value.toLowerCase(),arr=data.filter(d=>{let od=d.paid<d.total&&d.due&&d.due<today(),ok=filter==='all'||(filter==='paid'&&d.paid>=d.total)||(filter==='overdue'&&od)||(filter==='open'&&d.paid<d.total);return ok&&(d.shop+' '+d.product).toLowerCase().includes(q)});
+$('list').innerHTML=arr.length?arr.map(d=>{let od=d.paid<d.total&&d.due&&d.due<today(),rem=d.total-d.paid,h=(d.payments||[]).length?'<div class="history"><b>Тўлов тарихи:</b>'+d.payments.map(p=>`<div>• ${p.date} — ${money(p.amount)}</div>`).join('')+'</div>':'';
+return `<div class="item"><div class="top"><div><div class="name">${esc(d.shop)}</div><div class="muted">${esc(d.product)} · ${d.qty} дона × ${money(d.price)}</div></div><div class="money">${money(rem)}</div></div><div class="muted">Берилган: ${d.date}${d.due?' · Муддат: '+d.due:''}${d.phone?' · ☎ '+esc(d.phone):''}</div><span class="badge ${rem<=0?'green':od?'red':'yellow'}">${rem<=0?'✓ Тўланган':od?'⚠ Муддати ўтган':'Қарз бор'}</span>${h}<div class="actions">${rem>0?`<button class="pay" data-a="pay" data-id="${d.id}" data-rem="${rem}">💵 Пулни берди</button>`:''}<button class="del" data-a="delete" data-id="${d.id}">🗑 Ўчириш</button></div></div>`}).join(''):'<div class="empty">Ҳозирча маълумот йўқ</div>';
+let sq=$('shopSearch').value.toLowerCase(),map={};data.forEach(d=>{if(d.shop.toLowerCase().includes(sq)){if(!map[d.shop])map[d.shop]={debt:0,paid:0,count:0};map[d.shop].debt+=d.total-d.paid;map[d.shop].paid+=d.paid;map[d.shop].count++}});
+let ss=Object.entries(map).sort((a,b)=>b[1].debt-a[1].debt);$('shopsList').innerHTML=ss.length?ss.map(x=>`<div class="shoprow"><div><div class="shopname">${esc(x[0])}</div><div class="muted">${x[1].count} та қарз · Қайтарилган: ${money(x[1].paid)}</div></div><b>${money(x[1].debt)}</b></div>`).join(''):'<div class="empty">Магазинлар ҳали йўқ</div>';
+}
+load();
+</script>
+</body></html>
