@@ -6,6 +6,10 @@
 <title>Qarz Daftari</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f1f4f8;color:#18202b;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+/* Sukhrob's GROUPE branding */
+.splash{position:fixed;inset:0;z-index:999;background:radial-gradient(circle at 50% 42%,#263244 0,#101722 34%,#070a0f 72%);display:flex;align-items:center;justify-content:center;transition:opacity .45s ease,visibility .45s ease}.splash.hide{opacity:0;visibility:hidden;pointer-events:none}.splash-inner{text-align:center;color:#fff;transform:translateY(4px);animation:splashIn .8s ease both}.brand-mark{width:76px;height:76px;margin:0 auto 18px;border:2px solid rgba(255,255,255,.88);border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;letter-spacing:-4px;box-shadow:0 0 35px rgba(255,255,255,.12);position:relative;overflow:hidden}.brand-mark:after{content:"";position:absolute;inset:-35%;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.45),transparent 60%);transform:translateX(-70%) rotate(8deg);animation:shine 1.6s ease-in-out infinite}.splash-title{font-size:31px;font-weight:850;letter-spacing:-1px}.splash-group{font-size:12px;letter-spacing:8px;margin:7px 0 25px 8px;opacity:.72}.loader-ring{width:28px;height:28px;margin:auto;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-right-color:#fff;border-radius:50%;animation:spin .8s linear infinite}.brand-header{display:flex;align-items:center;gap:11px;padding:8px 3px 15px}.brand-mini{width:42px;height:42px;border-radius:13px;background:#111827;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;letter-spacing:-3px;box-shadow:0 5px 16px #0002}.brand-name{font-size:23px;font-weight:900;letter-spacing:-.6px}.brand-group{font-size:9px;letter-spacing:4px;color:#7b858f;margin-top:1px}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes shine{50%{transform:translateX(70%) rotate(8deg)}}@keyframes splashIn{from{opacity:0;transform:translateY(15px) scale(.97)}to{opacity:1;transform:none}}
+
 .wrap{max-width:850px;margin:auto;padding:14px 13px 90px}header{padding:8px 3px 15px}h1{font-size:29px;margin:0;font-weight:850}.sub{color:#6d7681;margin-top:4px;font-size:14px}
 .page{display:none}.page.active{display:block}.hero{background:linear-gradient(145deg,#111827,#293548);color:#fff;border-radius:24px;padding:20px;margin-bottom:13px;box-shadow:0 8px 25px #0002}
 .hero .small{opacity:.75;font-size:13px}.hero .big{font-size:34px;font-weight:900;margin:4px 0 15px}.herorow{display:grid;grid-template-columns:1fr 1fr;gap:9px}.heroitem{background:#ffffff14;border:1px solid #ffffff18;border-radius:15px;padding:11px}.heroitem span{display:block;font-size:12px;opacity:.72}.heroitem b{font-size:17px}
@@ -24,8 +28,10 @@ button{border:0;border-radius:13px;padding:12px 14px;font-weight:750;font-size:1
 </style>
 </head>
 <body>
+<div id="splash" class="splash" aria-label="Sukhrob's GROUPE loading"><div class="splash-inner"><div class="brand-mark">SG</div><div class="splash-title">Sukhrob's</div><div class="splash-group">GROUPE</div><div class="loader-ring"></div></div></div>
 <div class="wrap">
-<header><h1>📒 Қарз дафтари</h1><div class="sub">Онлайн — маълумотлар базага сақланади</div></header>
+<header class="brand-header"><div class="brand-mini">SG</div><div><div class="brand-name">Sukhrob's GROUPE</div><div class="brand-group">QARZ DAFTARI</div></div></header>
+<div class="sub" style="margin:-7px 3px 15px">Онлайн — маълумотлар базага сақланади</div>
 
 <section id="home" class="page active">
 <div class="hero"><div class="small">ЖАМИ ҚОЛГАН ҚАРЗ</div><div class="big" id="heroLeft">0 сўм</div>
@@ -71,6 +77,7 @@ async function api(path='',opts={}){
  return r.json();
 }
 async function load(){try{data=await api();render()}catch(e){console.error(e);document.querySelector('.sub').textContent='⚠️ API/база уланмаган — Vercel ENV созламаларини текширинг';}}
+window.addEventListener('load',()=>{setTimeout(()=>$('splash').classList.add('hide'),1500)});
 function show(page){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(page).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('on',x.dataset.page===page));render()}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>show(b.dataset.page));
 
