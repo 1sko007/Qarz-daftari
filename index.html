@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
- <link rel="icon" type="image/png" href="/favicon.png">
-<title>Qarz Daftari</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Qarz Daftari — Sukhrob's GROUPE</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f1f4f8;color:#18202b;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 /* Sukhrob's GROUPE branding */
@@ -30,7 +30,7 @@ button{border:0;border-radius:13px;padding:12px 14px;font-weight:750;font-size:1
 </head>
 <body>
 <div id="splash" class="splash" aria-label="Sukhrob's GROUPE loading"><div class="splash-inner"><div class="brand-mark">SG</div><div class="splash-title">Sukhrob's</div><div class="splash-group">GROUPE</div><div class="loader-ring"></div></div></div>
-<div class="wrap">
+<div class="wrap" id="app" style="display:none">
 <header class="brand-header"><div class="brand-mini">SG</div><div><div class="brand-name">Sukhrob's GROUPE</div><div class="brand-group">QARZ DAFTARI</div></div></header>
 <div class="sub" style="margin:-7px 3px 15px">Онлайн — маълумотлар базага сақланади</div>
 
@@ -64,9 +64,10 @@ button{border:0;border-radius:13px;padding:12px 14px;font-weight:750;font-size:1
 </section>
 </div>
 
-<nav class="nav"><button class="on" data-page="home">🏠<br>Бош саҳифа</button><button data-page="add">➕<br>Янги қарз</button><button data-page="debts">📋<br>Қарзлар</button><button data-page="shops">🏪<br>Магазинлар</button></nav>
+<nav class="nav" style="display:none"><button class="on" data-page="home">🏠<br>Бош саҳифа</button><button data-page="add">➕<br>Янги қарз</button><button data-page="debts">📋<br>Қарзлар</button><button data-page="shops">🏪<br>Магазинлар</button></nav>
 
 <script>
+(async()=>{try{const r=await fetch('/api/auth');const j=await r.json();if(!j.authenticated){location.replace('/login.html');return}document.getElementById('app').style.display='block';document.querySelector('.nav').style.display='grid';}catch(_){location.replace('/login.html')}})();
 let data=[],filter='all';
 const $=id=>document.getElementById(id),today=()=>new Date().toISOString().slice(0,10),money=n=>Number(n||0).toLocaleString('uz-UZ')+' сўм';
 const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
