@@ -14,6 +14,26 @@
 .brand{font-size:28px;font-weight:900;letter-spacing:-1px}.group{font-size:10px;letter-spacing:6px;opacity:.55;margin:7px 0 30px 6px}.title{font-size:20px;font-weight:800;margin-bottom:5px}.subtitle{font-size:13px;color:#9ca6b4;margin-bottom:22px}
 .form{text-align:left}.field{margin-bottom:14px}.field label{display:block;font-size:12px;color:#9ca6b4;font-weight:700;margin:0 0 6px 3px}.field input{width:100%;padding:15px 15px;border:1px solid #ffffff18;border-radius:14px;background:#0d131d;color:#fff;outline:none;font-size:16px}.field input:focus{border-color:#ffffff55;box-shadow:0 0 0 3px #ffffff0b}.password{position:relative}.password input{padding-right:48px}.eye{position:absolute;right:7px;top:7px;width:40px;height:40px;border:0;background:transparent;color:#9ca6b4;font-size:18px;cursor:pointer}.submit{width:100%;margin-top:6px;padding:15px;border:0;border-radius:14px;background:#fff;color:#111827;font-size:15px;font-weight:850;cursor:pointer;transition:transform .15s,opacity .15s}.submit:active{transform:scale(.99)}.submit:disabled{opacity:.6;cursor:wait}.error{min-height:20px;color:#ff8d8d;font-size:13px;margin:11px 0 0}.footer{margin-top:25px;color:#667181;font-size:11px}.spinner{display:inline-block;width:15px;height:15px;border:2px solid #11182733;border-top-color:#111827;border-radius:50%;vertical-align:-3px;animation:spin .7s linear infinite;margin-right:7px}
 @keyframes spin{to{transform:rotate(360deg)}}@keyframes shine{50%{transform:translateX(70%) rotate(8deg)}}@media(max-width:430px){.login{padding:29px 20px 23px}.brand{font-size:25px}}
+
+@media (min-width:900px){
+ body{padding:32px;background:#080c12}
+ .bg{background:radial-gradient(circle at 18% 20%,#273548 0,#111923 38%,#070a0f 75%)}
+ .glow{width:520px;height:520px;left:20%;top:10%;opacity:.05}
+ .login{width:min(1000px,100%);min-height:610px;padding:58px 64px 48px 52%;border-radius:32px;text-align:left;display:flex;flex-direction:column;justify-content:center;box-shadow:0 35px 100px #0009}
+ .login:before{content:"SG";position:absolute;left:0;top:0;bottom:0;width:43%;display:flex;align-items:center;justify-content:center;font-size:100px;font-weight:950;letter-spacing:-13px;color:#fff;background:radial-gradient(circle at 50% 35%,#33445a 0,#182230 43%,#0d131c 100%);border-right:1px solid #ffffff17;text-shadow:0 12px 50px #ffffff20}
+ .login:after{content:"Sukhrob's GROUPE\A QARZ DAFTARI\A\A Hisob-kitoblaringiz\A bir joyda, tartibli va qulay.";white-space:pre-line;position:absolute;left:6.5%;bottom:11%;width:30%;font-size:18px;line-height:1.65;font-weight:700;letter-spacing:.1px;color:#d7dee8;pointer-events:none}
+ .logo{width:58px;height:58px;margin:0 0 13px;border-radius:17px;font-size:24px;grid-area:auto}
+ .brand{font-size:28px}
+ .group{margin:5px 0 25px 5px}
+ .title{font-size:23px;margin-bottom:7px}
+ .subtitle{font-size:14px;margin-bottom:25px}
+ .form{width:100%;max-width:390px}
+ .field{margin-bottom:16px}
+ .field input{padding:15px 16px}
+ .submit{padding:16px}
+ .footer{margin-top:23px}
+}
+@media (min-width:900px) and (max-width:1050px){.login{padding-left:47%;padding-right:42px}.login:before{width:40%}.login:after{left:5%;width:30%;font-size:16px}}
 </style>
 </head>
 <body>
